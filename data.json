@@ -1,0 +1,60 @@
+{
+  "grade": 5,
+  "currentTopic": "Living things!",
+  "modules": [
+    {
+      "module": 1,
+      "title": "Home & Away!",
+      "subtitle": "Rooms, furniture, unusual buildings and home",
+      "grammar": "there is / there are; some / any; prepositions of place"
+    },
+    {
+      "module": 2,
+      "title": "Living things!",
+      "subtitle": "People, appearance, nationalities and possessions",
+      "grammar": "have got; possessives; plurals; this/these/that/those"
+    },
+    {
+      "module": 3,
+      "title": "Values",
+      "subtitle": "Family, friends, daily routines and friendship",
+      "grammar": "Present Simple; like / love / hate + -ing"
+    },
+    {
+      "module": 4,
+      "title": "World of Work",
+      "subtitle": "Jobs, duties and workplace rules",
+      "grammar": "have to / don't have to; question words"
+    },
+    {
+      "module": 5,
+      "title": "Creativity",
+      "subtitle": "Mythical creatures, films and music",
+      "grammar": "was / were; had; could / couldn't"
+    },
+    {
+      "module": 6,
+      "title": "Reading for Pleasure",
+      "subtitle": "Stories, legends and biographies",
+      "grammar": "adjectives; and / but / because / so"
+    },
+    {
+      "module": 7,
+      "title": "Fantasy world!",
+      "subtitle": "Animals, habitats and comparisons",
+      "grammar": "comparatives / superlatives"
+    },
+    {
+      "module": 8,
+      "title": "Sports",
+      "subtitle": "Sports, activities and equipment",
+      "grammar": "how much / how many; can"
+    },
+    {
+      "module": 9,
+      "title": "Holidays",
+      "subtitle": "Seasons, weather and activities",
+      "grammar": "Present Continuous"
+    }
+  ]
+}
