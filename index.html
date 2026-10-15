@@ -1,261 +1,133 @@
 <!doctype html>
 <html lang="kk">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>AI English Assistant</title>
-  <link rel="stylesheet" href="styles.css"/>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI English Lesson Builder</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="app-shell">
-    <aside class="sidebar">
-      <div class="brand">
-        <div class="brand-icon">🤖</div>
-        <div>
-          <h1>AI English Assistant</h1>
-          <p id="brandMeta">Grade 5 • Living things!</p>
+<header class="top">
+  <div class="brand"><div class="bookicon">📘</div><div><h1>AI English Lesson Builder</h1><p>From textbook to interactive lesson in one click</p></div></div>
+  <nav>
+    <button class="topnav" data-view="home">Home</button>
+    <button class="topnav active" data-view="create">Create Lesson</button>
+    <button class="topnav" data-view="lessons">My Lessons</button>
+    <button class="topnav" data-view="library">Textbook Library</button>
+    <button class="topnav" data-view="dashboard">Teacher Dashboard</button>
+    <button class="topnav" data-view="competition">Competition</button>
+    <button class="topnav" data-view="about">About</button>
+  </nav>
+  <div class="user">A <span>Teacher ▾</span></div>
+</header>
+
+<main>
+<section id="home" class="view">
+  <div class="hero-home">
+    <div>
+      <div class="eyebrow">AI LESSON AUTOMATION</div>
+      <h2>From textbook page to interactive lesson</h2>
+      <p>Upload a textbook page, choose the lesson settings and generate a structured Teacher Version and Student Version.</p>
+      <button class="primary" onclick="showView('create')">Create Lesson</button>
+    </div>
+    <div class="home-flow">
+      <div>1. Upload textbook page</div><b>↓</b><div>2. Select options</div><b>↓</b><div>3. Generate</div><b>↓</b><div>4. Student practice</div><b>↓</b><div>5. Teacher review</div>
+    </div>
+  </div>
+</section>
+
+<section id="create" class="view active">
+  <div class="generator-grid">
+    <div class="panel step">
+      <div class="step-title"><span>1</span>Upload textbook page</div>
+      <div class="upload-box" id="dropZone">
+        <div class="page-thumb">
+          <div class="page-num">5</div>
+          <div class="thumb-title">Creativity</div>
+          <div class="bird">🦅</div>
         </div>
+        <input id="fileInput" type="file" accept=".pdf,image/*" hidden>
+        <button class="primary" id="uploadBtn">☁ Upload PDF or image</button>
+        <div id="fileName" class="file-name">Demo source: Grade 5, Module 5, p.57</div>
       </div>
+    </div>
 
-      <div class="student-card">
-        <div class="student-badge">5</div>
-        <div>
-          <strong>Student mode</strong>
-          <p id="studentTopic">Topic: Living things!</p>
-        </div>
+    <div class="panel step">
+      <div class="step-title"><span>2</span>Select options</div>
+      <div class="form-grid">
+        <label>Grade<select id="grade"><option>5</option></select></label>
+        <label>Textbook<select id="book"><option>English 5 (Excel for Kazakhstan)</option></select></label>
+        <label>Page number<input id="page" value="57"></label>
+        <label>or choose topic<input id="topic" value="Mythical creatures"></label>
+        <label class="wide">Lesson duration<select id="duration"><option>40 minutes</option><option>45 minutes</option></select></label>
       </div>
+    </div>
 
-      <nav class="menu">
-        <button class="menu-item active" data-page="home">⌂ Home</button>
-        <button class="menu-item" data-page="library">▥ Topic Library</button>
-        <button class="menu-item" data-page="vocabulary">✦ Vocabulary</button>
-        <button class="menu-item" data-page="listening">◔ Listening</button>
-        <button class="menu-item" data-page="reading">☰ Reading</button>
-        <button class="menu-item" data-page="grammar">☑ Use of English</button>
-        <button class="menu-item" data-page="speaking">✎ Speaking</button>
-        <button class="menu-item" data-page="teacher">⚙ Teacher Generator</button>
-        <button class="menu-item" data-page="dashboard">◫ Teacher Dashboard</button>
-        <button class="menu-item" data-page="progress">◔ My Progress</button>
-        <button class="menu-item" data-page="competition">⌘ Competition Mode</button>
-        <button class="menu-item" data-page="about">ⓘ About Project</button>
-      </nav>
+    <div class="panel step generate-panel">
+      <div class="step-title"><span>3</span>Generate</div>
+      <button class="generate-btn" id="generateBtn">✨ Generate Lesson</button>
+      <p>Prototype analyses the selected textbook demo data and creates a complete lesson structure.</p>
+      <div class="ai-note">AI automation layer: demo mode</div>
+    </div>
 
-      <div class="tip-card">
-        <div class="tip-icon">💡</div>
-        <div>
-          <strong>AI tip</strong>
-          <p>Do the task yourself first. AI helps you improve, not copy.</p>
-        </div>
+    <div class="panel examples">
+      <h3>Example pages</h3>
+      <div class="example-row">
+        <button class="example active" data-page="57"><div class="mini-cover">5<br>🦅</div><b>Module 5</b><small>p.57<br>Mythical creatures</small></button>
+        <button class="example" data-page="85"><div class="mini-cover">7<br>🐆</div><b>Module 7</b><small>p.85<br>Fantasy world!</small></button>
+        <button class="example" data-page="109"><div class="mini-cover">9<br>☀️</div><b>Module 9</b><small>p.109<br>Holidays</small></button>
       </div>
-    </aside>
-
-    <main class="main">
-      <header class="topbar">
-        <div></div>
-        <div class="top-pill">Learn • Practise • Improve</div>
-      </header>
-
-      <section id="home" class="page active">
-        <div class="hero-card">
-          <div class="hero-copy">
-            <div class="eyebrow">YOUR SMART ENGLISH PRACTICE SPACE</div>
-            <h2>Make plans.<br><span>Speak with confidence.</span></h2>
-            <p>Choose a topic, learn useful words, read a short text and practise English with instant support.</p>
-            <button class="primary-btn" onclick="openPage('library')">Start learning ✨</button>
-          </div>
-          <div class="hero-visual">
-            <div class="robot-panel">
-              <div class="robot-circle">🤖</div>
-              <div class="robot-speech">Hi! I’m your AI learning coach. Ready?</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="quick-grid">
-          <button class="quick-card" onclick="openPage('vocabulary')">
-            <div class="quick-icon">✦</div>
-            <div class="quick-num">1</div>
-            <h3>Vocabulary</h3>
-            <p>Learn 4 key phrases</p>
-          </button>
-          <button class="quick-card" onclick="openPage('listening')">
-            <div class="quick-icon">◔</div>
-            <div class="quick-num">2</div>
-            <h3>Listening</h3>
-            <p>Listen & understand</p>
-          </button>
-          <button class="quick-card" onclick="openPage('speaking')">
-            <div class="quick-icon">✎</div>
-            <div class="quick-num">3</div>
-            <h3>Speaking</h3>
-            <p>Get smart feedback</p>
-          </button>
-        </div>
-      </section>
-
-      <section id="library" class="page">
-        <div class="section-header">
-          <div>
-            <div class="eyebrow">CHOOSE A TOPIC</div>
-            <h2>Topic Library</h2>
-            <p>Choose a grade, then open a module or topic. Practice updates automatically.</p>
-          </div>
-        </div>
-        <div class="grade-tabs">
-          <button class="grade-tab active">Grade 5</button>
-          <button class="grade-tab">Grade 6</button>
-          <button class="grade-tab">Grade 7</button>
-          <button class="grade-tab">Grade 8</button>
-          <button class="grade-tab">Grade 9</button>
-        </div>
-        <div id="moduleGrid" class="module-grid"></div>
-      </section>
-
-      <section id="vocabulary" class="page">
-        <div class="section-header">
-          <div><div class="eyebrow">MODULE PRACTICE</div><h2>Vocabulary</h2><p>Learn key words from the selected module.</p></div>
-        </div>
-        <div class="content-card">
-          <div class="chip">Module 2 • Living things!</div>
-          <div class="vocab-list">
-            <div class="vocab-item"><strong>curly hair</strong><span>бұйра шаш</span></div>
-            <div class="vocab-item"><strong>nationality</strong><span>ұлт</span></div>
-            <div class="vocab-item"><strong>scarf</strong><span>шарф</span></div>
-            <div class="vocab-item"><strong>helmet</strong><span>дулыға</span></div>
-          </div>
-        </div>
-      </section>
-
-      <section id="listening" class="page">
-        <div class="section-header">
-          <div><div class="eyebrow">MODULE PRACTICE</div><h2>Listening</h2><p>Listen and answer the question.</p></div>
-        </div>
-        <div class="content-card">
-          <div class="chip">Module 2 • Listening</div>
-          <p class="script">Juanita and Ricardo describe their appearance and favourite clothes.</p>
-          <div class="question-box">Question: Who is wearing a scarf?</div>
-        </div>
-      </section>
-
-      <section id="reading" class="page">
-        <div class="section-header">
-          <div><div class="eyebrow">MODULE PRACTICE</div><h2>Reading</h2><p>Read the adapted text and answer.</p></div>
-        </div>
-        <div class="content-card">
-          <div class="chip">Module 2 • Reading</div>
-          <p class="script">Our world has living and non-living things. Animals and plants are living things because they grow and change. Objects such as a skateboard, watch or camera are non-living.</p>
-          <div class="question-box">Question: How can you tell a living thing from a non-living thing?</div>
-        </div>
-      </section>
-
-      <section id="grammar" class="page">
-        <div class="section-header">
-          <div><div class="eyebrow">USE OF ENGLISH</div><h2>Use of English</h2><p>Grammar rules explained simply in Kazakh.</p></div>
-        </div>
-        <div class="content-card">
-          <div class="chip">Module 2 • Grammar</div>
-          <div class="kazakh-box">
-            <strong>Қазақша түсіндіру:</strong>
-            <p><b>Have got</b> — «бар» деген мағына береді. <b>I/You/We/They have got</b>, ал <b>He/She/It has got</b>.</p>
-          </div>
-          <div class="example-grid">
-            <div class="example">She has got a helmet.</div>
-            <div class="example">These are my gloves.</div>
-            <div class="example">That camera is hers.</div>
-          </div>
-        </div>
-      </section>
-
-      <section id="speaking" class="page">
-        <div class="section-header">
-          <div><div class="eyebrow">SPEAKING TASK</div><h2>Speaking</h2><p>Introduce yourself and speak with confidence.</p></div>
-        </div>
-        <div class="content-card">
-          <div class="chip">Module 2 • Speaking</div>
-          <div class="question-box">Introduce yourself. Say where you are from, describe your appearance and mention two things you have got.</div>
-          <div class="speaking-tools">
-            <button class="secondary-btn">🎤 Start speaking</button>
-            <button class="secondary-btn">Play feedback</button>
-          </div>
-        </div>
-      </section>
-
-      <section id="teacher" class="page">
-        <div class="section-header">
-          <div><div class="eyebrow">TEACHER GENERATOR</div><h2>Teacher Generator</h2><p>Generate a simple 10-point lesson plan for the selected module.</p></div>
-        </div>
-        <div class="content-card">
-          <div class="generator-grid">
-            <div class="small-panel">
-              <label>Grade<select><option>Grade 5</option></select></label>
-              <label>Module<select><option>Module 2: Living things!</option></select></label>
-              <label>Duration<select><option>40 minutes</option></select></label>
-              <button class="primary-btn">Generate ҚМЖ</button>
-            </div>
-            <div class="plan-panel">
-              <h3>Short-term plan</h3>
-              <p><b>Objectives:</b> learn key words, practise reading and use have got correctly.</p>
-              <p><b>Assessment:</b> Vocabulary 2 • Reading 2 • Listening 2 • Use of English 2 • Speaking 2</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="dashboard" class="page">
-        <div class="section-header">
-          <div><div class="eyebrow">TEACHER DASHBOARD</div><h2>Teacher Dashboard</h2><p>Monitor module completion and learner activity.</p></div>
-        </div>
-        <div class="content-card">
-          <div class="stats-grid">
-            <div class="stat-box"><strong>28</strong><span>Students</span></div>
-            <div class="stat-box"><strong>18</strong><span>Completed module</span></div>
-            <div class="stat-box"><strong>7.4/10</strong><span>Average score</span></div>
-          </div>
-        </div>
-      </section>
-
-      <section id="progress" class="page">
-        <div class="section-header">
-          <div><div class="eyebrow">MY PROGRESS</div><h2>My Progress</h2><p>Track your 10-point module progress.</p></div>
-        </div>
-        <div class="progress-card">
-          <div class="progress-row"><span>Vocabulary</span><strong>2/2</strong></div>
-          <div class="progress-bar"><span style="width:100%"></span></div>
-          <div class="progress-row"><span>Listening</span><strong>2/2</strong></div>
-          <div class="progress-bar"><span style="width:100%"></span></div>
-          <div class="progress-row"><span>Reading</span><strong>1/2</strong></div>
-          <div class="progress-bar"><span style="width:50%"></span></div>
-          <div class="progress-row"><span>Use of English</span><strong>1/2</strong></div>
-          <div class="progress-bar"><span style="width:50%"></span></div>
-          <div class="progress-row"><span>Speaking</span><strong>0/2</strong></div>
-          <div class="progress-bar"><span style="width:0%"></span></div>
-          <div class="total-score">Total: <b>6/10</b></div>
-        </div>
-      </section>
-
-      <section id="competition" class="page">
-        <div class="section-header">
-          <div><div class="eyebrow">COMPETITION MODE</div><h2>Competition Mode</h2><p>Show the project to the jury in a clear sequence.</p></div>
-        </div>
-        <div class="competition-grid">
-          <div class="competition-box"><span>1</span><h3>Choose Grade</h3><p>Open Grade 5 and select a module.</p></div>
-          <div class="competition-box"><span>2</span><h3>Student Mode</h3><p>Show Vocabulary, Listening, Reading and Speaking.</p></div>
-          <div class="competition-box"><span>3</span><h3>Teacher Mode</h3><p>Generate a 10-point lesson plan.</p></div>
-          <div class="competition-box"><span>4</span><h3>Result</h3><p>Explain progress, assessment and benefits.</p></div>
-        </div>
-      </section>
-
-      <section id="about" class="page">
-        <div class="section-header">
-          <div><div class="eyebrow">ABOUT PROJECT</div><h2>About Project</h2><p>AI English Assistant is a module-based English learning platform.</p></div>
-        </div>
-        <div class="content-card">
-          <p>This interface is designed in the same style as the example: left sidebar, top bar, large home hero card and module-based navigation.</p>
-        </div>
-      </section>
-    </main>
+    </div>
   </div>
 
-  <script src="app.js"></script>
+  <div id="generated" class="generated hidden">
+    <div class="generated-head">
+      <div><h2>Generated Lesson <span class="check">✓</span></h2><p>Based on Grade 5, Module 5, page 57 — Creativity: Mythical creatures</p></div>
+      <div class="actions"><button>Edit</button><button>Save Lesson</button><button class="green">Download ҚМЖ</button><button>Share</button></div>
+    </div>
+
+    <div class="split">
+      <section class="teacher-version">
+        <div class="version-head purple"><div><strong>Teacher Version</strong><small>Complete lesson plan with objectives, descriptors and ҚМЖ</small></div><button id="viewKmj">View ҚМЖ</button></div>
+        <div class="teacher-body">
+          <aside class="teacher-menu">
+            <button class="teacher-tab active" data-tab="overview">Lesson Overview</button>
+            <button class="teacher-tab" data-tab="objectives">Learning Objectives</button>
+            <button class="teacher-tab" data-tab="warmup">Warm-up</button>
+            <button class="teacher-tab" data-tab="vocab">Vocabulary</button>
+            <button class="teacher-tab" data-tab="reading">Reading</button>
+            <button class="teacher-tab" data-tab="grammar">Grammar</button>
+            <button class="teacher-tab" data-tab="listening">Listening</button>
+            <button class="teacher-tab" data-tab="speaking">Speaking</button>
+            <button class="teacher-tab" data-tab="assessment">Assessment (10 points)</button>
+            <button class="teacher-tab" data-tab="homework">Homework</button>
+            <button class="teacher-tab" data-tab="answers">Answer Key</button>
+            <button class="teacher-tab" data-tab="descriptors">Descriptors</button>
+          </aside>
+          <div class="teacher-content" id="teacherContent"></div>
+        </div>
+      </section>
+
+      <section class="student-version">
+        <div class="version-head greenish"><div><strong>Student Version</strong><small>Interactive tasks based on the same textbook page</small></div><button id="startLesson">▶ Start Lesson</button></div>
+        <div class="progress-steps" id="progressSteps">
+          <span class="on">1<small>Vocabulary</small></span><span>2<small>Reading</small></span><span>3<small>Listening</small></span><span>4<small>Grammar</small></span><span>5<small>Speaking</small></span><span>6<small>Quiz</small></span>
+        </div>
+        <div id="studentTask" class="student-task"></div>
+      </section>
+    </div>
+  </div>
+</section>
+
+<section id="lessons" class="view"><div class="placeholder"><h2>My Lessons</h2><p>Saved lessons will appear here in a later version.</p></div></section>
+<section id="library" class="view"><div class="placeholder"><h2>Textbook Library</h2><p>Grade 5 demo book is connected. More textbooks can be added later.</p></div></section>
+<section id="dashboard" class="view"><div class="placeholder" id="dashBox"><h2>Teacher Dashboard</h2><p>Generate and complete a lesson to see progress.</p></div></section>
+<section id="competition" class="view"><div class="placeholder"><h2>Competition Mode</h2><div class="competition-flow"><div>Textbook page</div><span>→</span><div>AI lesson</div><span>→</span><div>Student practice</div><span>→</span><div>Feedback</div><span>→</span><div>Dashboard</div></div><blockquote>“Оқулықтан интерактивті сабаққа — бір батырмамен.”</blockquote></div></section>
+<section id="about" class="view"><div class="placeholder"><h2>About</h2><p>AI English Lesson Builder automates lesson preparation from textbook content. AI supports the teacher; it does not replace the teacher.</p></div></section>
+</main>
+
+<div id="toast" class="toast"></div>
+<script src="data.js"></script>
+<script src="app.js"></script>
 </body>
 </html>

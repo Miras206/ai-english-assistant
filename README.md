@@ -1,28 +1,23 @@
-# AI English Assistant — UI v4
+# AI English Lesson Builder — AI v4
 
-Бұл нұсқа пайдаланушы жіберген интерфейс үлгісіне жақын стильде жасалды:
+This is the approved mockup connected to the live Cloudflare Workers AI backend.
 
-- сол жақ sidebar
-- жоғарғы top bar
-- үлкен home hero card
-- 3 quick action card
-- Topic Library модуль карточкалары
-- Vocabulary / Listening / Reading / Use of English / Speaking бөлімдері
-- Teacher Generator
-- Teacher Dashboard
-- My Progress
-- Competition Mode
-- About Project
+Worker API:
+https://ai-english-lesson-builder-api.mahanmadi2007.workers.dev/
 
-## Қалай ашу керек
-1. ZIP-ті ашыңыз
-2. index.html файлын браузерде ашыңыз
+Current automation:
+- Grade / Page / Topic / Duration from the website
+- Textbook Module 5 summary is sent to the Worker
+- Workers AI generates structured JSON
+- Teacher Version and Student Version are filled automatically
+- 10-point progress and microphone demo remain available
 
-## Келесі қадам
-Егер осы интерфейс ұнаса, енді осы дизайнның ішіне:
-- нақты Grade 5 модуль контентін
-- AI feedback
-- microphone
-- certificate
-- progress сақтау
-қосуға болады.
+Important:
+The upload control does not yet extract arbitrary PDF/image content. That is the next automation step.
+
+Upload these files to the GitHub repository root:
+index.html
+styles.css
+app.js
+data.js
+README.md
