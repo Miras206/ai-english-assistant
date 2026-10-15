@@ -15,10 +15,33 @@ window.showView=showView;
 document.querySelectorAll(".topnav").forEach(b=>b.onclick=()=>showView(b.dataset.view));
 
 const uploadBtn=document.getElementById("uploadBtn"), fileInput=document.getElementById("fileInput");
+let uploadedImageDataUrl="";
+
 uploadBtn.onclick=()=>fileInput.click();
+
 fileInput.onchange=()=>{
  const f=fileInput.files[0];
- if(f) document.getElementById("fileName").textContent="Selected: "+f.name+" • Demo analyser ready";
+ if(!f) return;
+
+ if(!f.type.startsWith("image/")){
+   alert("Қазір тек JPG, PNG немесе WEBP сурет жүктеңіз. PDF кейін қосылады.");
+   fileInput.value="";
+   uploadedImageDataUrl="";
+   return;
+ }
+
+ const reader=new FileReader();
+
+ reader.onload=()=>{
+   uploadedImageDataUrl=reader.result;
+
+   document.getElementById("fileName").textContent=
+     "Selected: "+f.name+" • AI image ready";
+
+   toast("Image uploaded. AI can analyse it now.");
+ };
+
+ reader.readAsDataURL(f);
 };
 
 document.querySelectorAll(".example").forEach(b=>b.onclick=()=>{
@@ -54,17 +77,33 @@ document.getElementById("generateBtn").onclick=async()=>{
  toast("AI is creating the lesson...");
 
  try{
-   const response=await fetch(API_URL,{
-     method:"POST",
-     headers:{"Content-Type":"application/json"},
-     body:JSON.stringify({
-       grade,
-       page,
-       topic,
-       duration,
-       textbookText:buildTextbookText()
-     })
-   });
+   let response;
+
+   if(uploadedImageDataUrl){
+     response=await fetch(API_URL+"image-to-lesson",{
+       method:"POST",
+       headers:{"Content-Type":"application/json"},
+       body:JSON.stringify({
+         grade,
+         page,
+         topic,
+         duration,
+         image:uploadedImageDataUrl
+       })
+     });
+   }else{
+     response=await fetch(API_URL+"generate",{
+       method:"POST",
+       headers:{"Content-Type":"application/json"},
+       body:JSON.stringify({
+         grade,
+         page,
+         topic,
+         duration,
+         textbookText:buildTextbookText()
+       })
+     });
+   }
 
    const data=await response.json();
    if(!response.ok || !data.success){
@@ -72,6 +111,21 @@ document.getElementById("generateBtn").onclick=async()=>{
    }
 
    aiLesson=data.lesson;
+
+   if(data.analysis){
+     if(data.analysis.topic){
+       document.getElementById("topic").value=data.analysis.topic;
+     }
+
+     document.getElementById("fileName").textContent=
+       "AI analysed image: "+
+       (
+         data.analysis.pageTitle ||
+         data.analysis.topic ||
+         "Textbook page"
+       );
+   }
+
    localStorage.setItem("aelb_ai_lesson",JSON.stringify(aiLesson));
    localStorage.setItem("aelb_generated","1");
 
